@@ -29,42 +29,60 @@ const SignIn: NextPage = (props): JSX.Element => {
   };
 
   return (
-    <div className="min-w-screen grid h-full min-h-screen grid-cols-3">
-      <div></div>
-      <div>
-        <form onSubmit={handleSubmit}>
-          <div className="m-10 flex flex-col gap-2 rounded-lg border bg-slate-100 p-10 shadow">
-            <h1>Login</h1>
-
-            <label className="label">
-              <span className="label-text">E-Mail</span>
-            </label>
-            <input
-              value={userInfo.email}
-              onChange={({ target }) =>
-                setUserInfo({ ...userInfo, email: target.value })
-              }
-              type="text"
-              placeholder="john@email.com"
-              className="input-borderd input w-full shadow"
-            />
-
-            <label className="label">
-              <span className="label-text">Passwort</span>
-            </label>
-
-            <input
-              value={userInfo.password}
-              onChange={({ target }) =>
-                setUserInfo({ ...userInfo, password: target.value })
-              }
-              type="password"
-              placeholder="********"
-              className="input-borderd input w-full shadow"
-            />
-            <input type="submit" value="Login" className="btn" />
-          </div>
-        </form>
+    <div className="hero min-h-screen bg-base-200">
+      <div className="hero-content flex-col lg:flex-row-reverse">
+        <div className="text-center lg:text-left">
+          <h1 className="text-5xl font-bold">Login now!</h1>
+          <p className="py-6">
+            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
+            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
+            a id nisi.
+          </p>
+        </div>
+        <div className="card w-full max-w-sm flex-shrink-0 bg-base-100 shadow-2xl">
+          <form onSubmit={handleSubmit}>
+            <div className="card-body">
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Email</span>
+                </label>
+                <input
+                  value={userInfo.email}
+                  onChange={({ target }) =>
+                    setUserInfo({ ...userInfo, email: target.value })
+                  }
+                  type="text"
+                  placeholder="email"
+                  className="input-bordered input"
+                />
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Password</span>
+                </label>
+                <input
+                  type="text"
+                  value={userInfo.password}
+                  onChange={({ target }) =>
+                    setUserInfo({ ...userInfo, password: target.value })
+                  }
+                  placeholder="password"
+                  className="input-bordered input"
+                />
+                {/* <label className="label">
+                    <a href="#" className="link-hover label-text-alt link">
+                      Forgot password?
+                    </a>
+                  </label> */}
+              </div>
+              <div className="form-control mt-6">
+                <button type="submit" className="btn-primary btn">
+                  Login
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );
