@@ -1,27 +1,16 @@
+import { IncomingMessage, ServerResponse } from "http";
 import { type NextPage } from "next";
 
 import { signIn, signOut, useSession } from "next-auth/react";
-import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { getServerAuthSession } from "~/server/auth";
 import { api } from "~/utils/api";
 
 const Home: NextPage = () => {
-  const { data: session, status } = useSession();
-  const router = useRouter();
+  const { data: session } = useSession();
   const { data: secretMessage } = api.example.getSecretMessage.useQuery(
     undefined, // no input
     { enabled: session?.user !== undefined }
   );
-
-  useEffect(() => {
-    if (status === "unauthenticated") {
-      router.push("/auth/signin");
-    }
-  }, [status]);
-
-  if (status === "loading") {
-    return <div> loading</div>;
-  }
 
   return (
     <>
@@ -41,4 +30,19 @@ const Home: NextPage = () => {
   );
 };
 
+export async function getServerSideProps(context: {
+  req: IncomingMessage & {
+    cookies: Partial<{
+      [key: string]: string;
+    }>;
+  };
+  res: ServerResponse<IncomingMessage>;
+}) {
+  const session = await getServerAuthSession(context);
+  return {
+    props: {
+      session,
+    },
+  };
+}
 export default Home;
