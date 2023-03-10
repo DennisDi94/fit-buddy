@@ -2,6 +2,7 @@ import { NextPage } from "next";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { FormEventHandler, useState } from "react";
+("use client");
 
 const SignIn: NextPage = (props): JSX.Element => {
   const [userInfo, setUserInfo] = useState({ email: "", password: "" });
@@ -31,22 +32,16 @@ const SignIn: NextPage = (props): JSX.Element => {
   return (
     <>
       {!session && (
-        <div className="hero min-h-screen bg-base-200">
-          <div className="hero-content flex-col lg:flex-row-reverse">
-            <div className="text-center lg:text-left">
-              <h1 className="text-5xl font-bold">Login now!</h1>
-              <p className="py-6">
-                Provident cupiditate voluptatem et in. Quaerat fugiat ut
-                assumenda excepturi exercitationem quasi. In deleniti eaque aut
-                repudiandae et a id nisi.
-              </p>
-            </div>
-            <div className="card w-full max-w-sm flex-shrink-0 bg-base-100 shadow-2xl">
+        <div className="flex h-screen place-content-center">
+          <div className="flex flex-col">
+            <div className="h-1/4"></div>
+            <div className="min-h-1/3 rounded-lg border bg-gray-200 p-10 shadow-xl">
+              <h1 className="mb-2 text-2xl font-bold">Login</h1>
               <form onSubmit={handleSubmit}>
-                <div className="card-body">
-                  <div className="form-control">
-                    <label className="label">
-                      <span className="label-text">Email</span>
+                <div className="flex flex-col gap-2">
+                  <div className="flex flex-col">
+                    <label>
+                      <span className="text-gray-600">E-Mail</span>
                     </label>
                     <input
                       value={userInfo.email}
@@ -54,22 +49,20 @@ const SignIn: NextPage = (props): JSX.Element => {
                         setUserInfo({ ...userInfo, email: target.value })
                       }
                       type="text"
-                      placeholder="email"
-                      className="input-bordered input"
+                      className="rounded border-none shadow outline-none"
                     />
                   </div>
-                  <div className="form-control">
-                    <label className="label">
-                      <span className="label-text">Password</span>
+                  <div className="flex flex-col">
+                    <label>
+                      <span>Passwort</span>
                     </label>
                     <input
-                      type="text"
+                      type="password"
                       value={userInfo.password}
                       onChange={({ target }) =>
                         setUserInfo({ ...userInfo, password: target.value })
                       }
-                      placeholder="password"
-                      className="input-bordered input"
+                      className="rounded border-none shadow outline-none"
                     />
                     {/* <label className="label">
                     <a href="#" className="link-hover label-text-alt link">
@@ -77,8 +70,11 @@ const SignIn: NextPage = (props): JSX.Element => {
                     </a>
                   </label> */}
                   </div>
-                  <div className="form-control mt-6">
-                    <button type="submit" className="btn-primary btn">
+                  <div className="flex justify-end">
+                    <button
+                      type="submit"
+                      className="rounded-lg bg-cyan-500 py-2 px-4 shadow hover:bg-cyan-600"
+                    >
                       Login
                     </button>
                   </div>

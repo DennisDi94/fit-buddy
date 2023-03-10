@@ -1,11 +1,9 @@
-import { useSession } from "next-auth/react";
 import { ReactNode, useState } from "react";
 import NavBar from "~/components/NavBar";
 import SideBar from "~/components/SideBar/SideBar";
 import "~/styles/globals.css";
 
 const AppLayout = ({ children }: { children: ReactNode }) => {
-  const { data: session } = useSession();
   const [open, setOpen] = useState(false);
 
   return (
@@ -18,7 +16,7 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
             {children}
           </div>
         </div>
-        <footer className="footer bg-neutral p-10 text-neutral-content">
+        <footer className="footer bg-neutral text-neutral-content p-10">
           <div>
             <span className="footer-title">Services</span>
             <a className="link-hover link">Branding</a>

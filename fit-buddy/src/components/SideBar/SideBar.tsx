@@ -11,17 +11,16 @@ function SideBar({ open }: { open: Boolean }) {
   return (
     <>
       <div
-        className={`drawer-side z-40 h-full w-64 bg-gray-200 duration-500 ease-in-out ${
+        className={`z-40 h-full w-64 bg-gray-200 duration-500 ease-in-out ${
           open ? "-translate-x-full" : "translate-x-0"
         }`}
       >
-        <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-        <ul className="menu flex min-h-screen w-60 flex-col gap-2 p-4 text-base-content">
-          <li>
+        <ul className="text-base-content flex min-h-screen w-60 flex-col gap-4 p-10">
+          <li className="w-full rounded p-2 hover:bg-gray-300">
             <Link href="/">Home</Link>
           </li>
-          <li>
-            <Link href="/dashboard"> Dashboard</Link>
+          <li className="w-full rounded p-2 hover:bg-gray-300">
+            <Link href="/exercises">Übungen</Link>
           </li>
         </ul>
       </div>

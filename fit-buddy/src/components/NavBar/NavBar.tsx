@@ -4,15 +4,16 @@ import ProfileMenu from "../ProfileMenu";
 
 function NavBar({ setOpen }: { setOpen: Dispatch<SetStateAction<boolean>> }) {
   const { data: session } = useSession();
+
   if (!session) {
     return <></>;
   }
 
   return (
-    <div className="navbar bg-gray-600 text-white shadow">
-      <div className="flex-none">
+    <div className="flex justify-between bg-gray-600 p-2 text-white shadow">
+      <div className="m-1">
         <button
-          className="btn-ghost btn-square btn"
+          className="rounded px-2 pt-1 pb-2 hover:bg-gray-800"
           onClick={() => setOpen((open) => !open)}
         >
           <svg
@@ -30,11 +31,11 @@ function NavBar({ setOpen }: { setOpen: Dispatch<SetStateAction<boolean>> }) {
           </svg>
         </button>
       </div>
-      <div className="flex-1">
-        <a className="btn-ghost btn text-xl normal-case">daisyUI</a>
-      </div>
-      <div className="flex-none">
-        <ProfileMenu />
+      <h1 className="m-1 p-1.5 text-lg font-bold">fitBuddy</h1>
+      <div className="m-1">
+        <div className="">
+          <ProfileMenu />
+        </div>
       </div>
     </div>
   );

@@ -3,21 +3,15 @@ import { type NextPage } from "next";
 
 import { signIn, signOut, useSession } from "next-auth/react";
 import { getServerAuthSession } from "~/server/auth";
-import { api } from "~/utils/api";
 
 const Home: NextPage = () => {
   const { data: session } = useSession();
-  const { data: secretMessage } = api.example.getSecretMessage.useQuery(
-    undefined, // no input
-    { enabled: session?.user !== undefined }
-  );
 
   return (
     <>
       <div className="flex flex-col items-center justify-center gap-4">
         <p className="text-center text-2xl ">
           {session && <span>Logged in as {session.user?.name}</span>}
-          {secretMessage && <span> - {secretMessage}</span>}
         </p>
         <button
           className="rounded-full px-10 py-3 font-semibold  no-underline transition hover:bg-white/20"
